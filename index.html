@@ -17,7 +17,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark shadow fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">ReyhanTR</a>
+        <a class="navbar-brand" href="#">PORTFOLIO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -141,19 +141,30 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name Lengkap</label>
-              <input type="text" class="form-control" id="name" />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email Lengkap</label>
-              <input type="email" class="form-control" id="email" />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">message</label>
-              <textarea class="form-control" id="message" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn tombol">Submit</button>
+            <form name="contact-form">
+              <div class="alert alert-success text-center d-none alert-dismissible fade show" role="alert">
+                <strong>TerimaKasih</strong> Atas Pesan Yang Anda Kirim.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Name Lengkap</label>
+                <input type="text" class="form-control" id="name" name="nama" />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Lengkap</label>
+                <input type="email" class="form-control" id="email" name="email" />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">message</label>
+                <textarea class="form-control" id="message" rows="3" name="message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-info btn-kirim">Submit</button>
+
+              <button class="btn btn-info btn-loading d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -174,5 +185,33 @@
     <!-- akhir footer -->
     <!-- bootstrap js -->
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
+
+    <script>
+      const scriptURL = "https://script.google.com/macros/s/AKfycbz_q3B0dinyrmOThYr-PzsoPd8VWdmrnFffJg2bEz-t8hTw4ZszrFtEP2GfGHWl50yk0w/exec";
+      const form = document.forms["contact-form"];
+      const btnKirim = document.querySelector(".btn-kirim");
+      const btnLoading = document.querySelector(".btn-loading");
+      const alert = document.querySelector(".alert");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // ketika tombol submit dikilk
+        // tampilkan tombol loading , hilangkan tombol kirim
+        btnLoading.classList.toggle("d-none");
+        btnKirim.classList.toggle("d-none");
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            // tampilkan tombol kirim , hilangkan tombol loading
+            btnLoading.classList.toggle("d-none");
+            btnKirim.classList.toggle("d-none");
+            // tampilkan alert
+            alert.classList.toggle("d-none");
+            // reset form
+            form.reset();
+            console.log("Success!", response);
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
   </body>
 </html>
