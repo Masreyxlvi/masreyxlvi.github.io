@@ -10,6 +10,9 @@ nav {
   background-color: #5d5d5d;
 }
 
+.tombol {
+  background: #fef200;
+}
 .web {
   border-color: #e6d72a;
 }
@@ -24,10 +27,6 @@ nav {
 
 #contact {
   background-color: #ececec;
-}
-
-.tombol {
-  background-color: #98dbc6;
 }
 
 section {
