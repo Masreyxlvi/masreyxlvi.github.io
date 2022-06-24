@@ -1,6 +1,11 @@
 nav {
   background-color: #171717;
 }
+
+nav ul:hover {
+  font-weight: 40%;
+}
+
 .navbar-brand {
   font-family: "Viga", sans-serif;
 }
