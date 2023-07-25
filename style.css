@@ -94,19 +94,15 @@ body {
   color: var(--white-color);
   cursor: pointer;
 }
-#menu-icon {
-  display: none;
-  font-size: 3.6rem;
-  color: var(--text-color);
-  cursor: pointer;
-}
 .header.sticky #darkMode-icon {
   color: var(--text-color);
   opacity: 9;
 }
-.header.sticky #menu-icon {
+
+#menu-icon {
+  font-size: 3.6rem;
   color: var(--text-color);
-  opacity: 9;
+  display: none;
 }
 
 section {
@@ -278,7 +274,6 @@ section {
   bottom: 0;
   right: 0;
   width: 100%;
-  object-fit: cover;
   pointer-events: none;
 }
 
@@ -634,7 +629,7 @@ span {
     right: -45rem;
   }
   .home .profession-container .overlay {
-    right: -38.5rem;
+    right: -39.5rem;
   }
   .home-image img {
     display: none;
